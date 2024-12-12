@@ -1,0 +1,233 @@
+/* Variáveis CSS */
+:root {
+  --primary-color: #2563eb;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --background-primary: #ffffff;
+  --background-secondary: #f3f4f6;
+  --border-color: #e5e7eb;
+  --spacing-unit: 1rem;
+}
+
+/* Container principal */
+.post-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-unit);
+}
+
+/* Cabeçalho do post */
+.post-header {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.post-header h1 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-unit);
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-unit);
+}
+
+.author-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.author-avatar-small {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.meta-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.post-date {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Conteúdo do post */
+.post-content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+/* Footer do post */
+.post-footer {
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--spacing-unit);
+  margin-top: calc(var(--spacing-unit) * 2);
+}
+
+/* Posts relacionados */
+.related-posts {
+  margin-top: calc(var(--spacing-unit) * 4);
+  padding-top: calc(var(--spacing-unit) * 2);
+  border-top: 1px solid var(--border-color);
+}
+
+.related-posts h2 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: calc(var(--spacing-unit) * 2);
+}
+
+.post-card {
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.post-card-content {
+  padding: calc(var(--spacing-unit) * 1.5);
+}
+
+.post-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-unit);
+}
+
+.post-card a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.post-card a:hover {
+  color: var(--primary-color);
+}
+
+.post-card p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: var(--spacing-unit);
+}
+
+.post-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Estados de loading e erro */
+.loading-container,
+.error-container,
+.not-found-container {
+  text-align: center;
+  padding: calc(var(--spacing-unit) * 4);
+  margin: calc(var(--spacing-unit) * 2) auto;
+  max-width: 400px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  margin: 0 auto var(--spacing-unit);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-icon,
+.not-found-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-unit);
+}
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-top: var(--spacing-unit);
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #1d4ed8;
+}
+
+.share-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.share-button:hover {
+  background-color: #e5e7eb;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .post-header h1 {
+    font-size: 2rem;
+  }
+
+  .post-content {
+    font-size: 1rem;
+  }
+
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .post-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .post-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

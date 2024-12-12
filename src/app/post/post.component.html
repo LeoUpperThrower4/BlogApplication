@@ -1,10 +1,80 @@
-@if (post) {
-<div>
-  <h1>{{ post.title }}</h1>
-  <p>{{ post.content }}</p>
+@if (loading) {
+<div class="loading-container">
+  <div class="loading-spinner"></div>
+  <p>Carregando conteúdo...</p>
 </div>
+} @else if (error) {
+<div class="error-container">
+  <div class="error-icon">⚠️</div>
+  <p>{{ error }}</p>
+  <a routerLink="/" class="button">Voltar para Home</a>
+</div>
+} @else if (post) {
+<main class="post-container">
+  <article class="post">
+    <header class="post-header">
+      <h1>{{ post.title }}</h1>
+      <div class="post-meta">
+        <img
+          src="https://ui-avatars.com/api/?name={{ post.author }}"
+          alt="{{ post.author }}"
+          class="author-avatar"
+        />
+        <div class="meta-info">
+          <span class="author-name">{{ post.author }}</span>
+          <time class="post-date">{{
+            post.createdAt | date : "longDate" : "pt-BR"
+          }}</time>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-content">
+      {{ post.content }}
+    </div>
+
+    <footer class="post-footer">
+      <div class="share-buttons">
+        <button class="share-button">
+          <span>Compartilhar</span>
+        </button>
+      </div>
+    </footer>
+  </article>
+
+  @if (relatedPosts.length > 0) {
+  <aside class="related-posts">
+    <h2>Leituras Recomendadas</h2>
+    <div class="posts-grid">
+      @for (relatedPost of relatedPosts; track relatedPost.id) {
+      <article class="post-card">
+        <div class="post-card-content">
+          <h3>
+            <a [routerLink]="['/post', relatedPost.id]">{{
+              relatedPost.title
+            }}</a>
+          </h3>
+          <p>{{ relatedPost.content | slice : 0 : 120 }}...</p>
+          <div class="post-card-meta">
+            <img
+              src="https://ui-avatars.com/api/?name={{ relatedPost.author }}"
+              alt="{{ relatedPost.author }}"
+              class="author-avatar-small"
+            />
+            <span>{{ relatedPost.author }}</span>
+          </div>
+        </div>
+      </article>
+      }
+    </div>
+  </aside>
+  }
+</main>
 } @else {
-<div>
-  <h1>Post não encontrado</h1>
+<div class="not-found-container">
+  <div class="not-found-icon">📝</div>
+  <h2>Post não encontrado</h2>
+  <p>O post que você está procurando não existe ou foi removido.</p>
+  <a routerLink="/" class="button">Voltar para Home</a>
 </div>
 }
